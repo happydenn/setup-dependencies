@@ -3,17 +3,22 @@ from setuptools.command.develop import develop
 from setuptools.command.install import install
 from subprocess import check_call
 
+
+def post_install():
+    check_call('curl -sL https://deb.nodesource.com/setup_8.x | bash -')
+    check_call('apt-get update')
+    check_call('apt-get install -y nodejs'.split())
+
 class PostDevelopCommand(develop):
     def run(self):
-        check_call('apt-get update'.split())
-        check_call('apt-get install -y gnome-common'.split())
+        post_install()
         develop.run(self)
 
 class PostInstallCommand(install):
     def run(self):
-        check_call('apt-get update'.split())
-        check_call('apt-get install -y gnome-common'.split())
+        post_install()
         install.run(self)
+
 
 setup(
     name='setupdep',
