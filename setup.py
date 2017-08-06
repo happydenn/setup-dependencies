@@ -5,9 +5,9 @@ from subprocess import check_call
 
 
 def post_install():
-    check_call('curl -sL https://deb.nodesource.com/setup_8.x | bash -')
-    check_call('apt-get update')
-    check_call('apt-get install -y nodejs'.split())
+    check_call('curl -sL https://deb.nodesource.com/setup_8.x | bash -', shell=True)
+    check_call('apt-get update', shell=True)
+    check_call('apt-get install -y nodejs', shell=True)
 
 class PostDevelopCommand(develop):
     def run(self):
