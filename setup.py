@@ -5,9 +5,8 @@ from subprocess import check_call
 
 
 def post_install():
-    check_call('curl -sL https://deb.nodesource.com/setup_8.x | bash -', shell=True)
     check_call('apt-get update', shell=True)
-    check_call('apt-get install -y nodejs', shell=True)
+    check_call('apt-get install -y build-essential pkg-config glib2.0-dev libexpat1-dev libgirepository1.0-dev gobject-introspection', shell=True)
 
 class PostDevelopCommand(develop):
     def run(self):
