@@ -6,7 +6,8 @@ from subprocess import check_call
 
 def post_install():
     check_call('apt-get update', shell=True)
-    check_call('apt-get install -y build-essential pkg-config glib2.0-dev libexpat1-dev libgirepository1.0-dev gobject-introspection', shell=True)
+    check_call('apt-get install -y build-essential pkg-config glib2.0-dev libexpat1-dev libgirepository1.0-dev gobject-introspection libtiff5-dev libjpeg62-turbo-dev libexif-dev libgif-dev librsvg2-dev libpoppler-glib-dev libgsf-1-dev liblcms2-dev', shell=True)
+    check_call('cd /tmp && wget http://ftp.gnome.org/pub/GNOME/sources/pygobject/3.14/pygobject-3.14.0.tar.xz && tar xvf pygobject-3.14.0.tar.xz && cd pygobject-3.14.0 && ./configure && make install', shell=True)
 
 class PostDevelopCommand(develop):
     def run(self):
